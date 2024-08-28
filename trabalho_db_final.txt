@@ -78,3 +78,16 @@ INSERT INTO itens_de_pedido (quantidade, id_produto, id_pedido) VALUES
 
 4-select * from categoria c 
 inner join produto p on c.id_categoria = p.id_produto 
+
+5-select p2.nome, count(*) from cliente c
+ inner join pedido p on c.id_cliente = p.id_pedido 
+ inner join produto p2 on p2.id_produto = p.id_produto 
+ group by p2.nome 
+
+6- select c.nome_completo, c.cpf, p.data_pedido,  p2.id_produto, p2.nome, ip.quantidade, ip.quantidade * p2.valor_unitario as totalitem, 
+ip.quantidade*p2.valor_unitario as totalnota 
+from cliente c
+inner join pedido p on c.id_cliente = p.id_cliente 
+inner join itens_de_pedido ip on p.id_pedido = ip.id_pedido 
+inner join produto p2 on p2.id_produto = ip.id_produto 
+where c.nome_completo = 'Ana Costa
